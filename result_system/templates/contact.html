@@ -1,0 +1,255 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contact Us</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+
+    <style>
+        *{
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Poppins', sans-serif;
+        }
+
+        body{
+            background: #f3f7fb;
+            min-height: 100vh;
+            color: #1f2937;
+        }
+
+        .page{
+            max-width: 1100px;
+            margin: 0 auto;
+            padding: 30px 20px 50px;
+        }
+
+        .top-bar{
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            gap: 15px;
+            flex-wrap: wrap;
+            margin-bottom: 25px;
+        }
+
+        .title-box h1{
+            font-size: 34px;
+            font-weight: 800;
+            color: #1f2937;
+            line-height: 1.2;
+        }
+
+        .title-box p{
+            font-size: 15px;
+            color: #6b7280;
+            margin-top: 4px;
+        }
+
+        .btn{
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            padding: 12px 22px;
+            border-radius: 12px;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 14px;
+            transition: 0.3s ease;
+            border: 1px solid transparent;
+            white-space: nowrap;
+        }
+
+        .btn-dashboard{
+            background: #ffffff;
+            color: #0f9d8a;
+            border-color: #dbe7ea;
+        }
+
+        .btn-dashboard:hover{
+            background: #eefcf9;
+            transform: translateY(-2px);
+        }
+
+        .btn-home{
+            background: #0f9d8a;
+            color: #fff;
+            box-shadow: 0 8px 20px rgba(15,157,138,0.18);
+        }
+
+        .btn-home:hover{
+            background: #0b8575;
+            transform: translateY(-2px);
+        }
+
+        .card{
+            background: #fff;
+            border-radius: 22px;
+            box-shadow: 0 10px 30px rgba(31,41,55,0.08);
+            overflow: hidden;
+            max-width: 720px;
+            margin: 0 auto;
+        }
+
+        .card-top{
+            padding: 38px 25px 20px;
+            text-align: center;
+            background: linear-gradient(180deg, #f8fbff 0%, #ffffff 100%);
+            border-bottom: 1px solid #edf2f7;
+        }
+
+        .contact-avatar{
+            width: 120px;
+            height: 120px;
+            margin: 0 auto 18px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, #0f9d8a, #22c55e);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 10px 25px rgba(15,157,138,0.25);
+        }
+
+        .contact-avatar svg{
+            width: 62px;
+            height: 62px;
+            fill: #fff;
+        }
+
+        .card-top h2{
+            font-size: 28px;
+            font-weight: 800;
+            color: #1f2937;
+            margin-bottom: 6px;
+        }
+
+        .card-top .sub{
+            color: #6b7280;
+            font-size: 14px;
+        }
+
+        .info{
+            padding: 25px;
+        }
+
+        .info-grid{
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 18px;
+        }
+
+        .info-box{
+            background: #f9fbfd;
+            border: 1px solid #e8eef5;
+            border-radius: 16px;
+            padding: 18px;
+        }
+
+        .label{
+            font-size: 13px;
+            color: #6b7280;
+            margin-bottom: 6px;
+        }
+
+        .value{
+            font-size: 16px;
+            font-weight: 700;
+            color: #111827;
+            word-break: break-word;
+        }
+
+        .full{
+            grid-column: 1 / -1;
+        }
+
+        .footer-note{
+            text-align: center;
+            margin-top: 18px;
+            color: #6b7280;
+            font-size: 13px;
+        }
+
+        @media (max-width: 700px){
+            .title-box h1{
+                font-size: 28px;
+            }
+
+            .info-grid{
+                grid-template-columns: 1fr;
+            }
+
+            .card-top h2{
+                font-size: 24px;
+            }
+
+            .contact-avatar{
+                width: 100px;
+                height: 100px;
+            }
+
+            .contact-avatar svg{
+                width: 52px;
+                height: 52px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="page">
+
+        <div class="top-bar">
+            <div class="title-box">
+                <h1>Contact Us</h1>
+                <p>Get in touch with me anytime</p>
+            </div>
+
+            <div style="display:flex; gap:12px; flex-wrap:wrap;">
+                <a href="{% url 'dashboard' %}" class="btn btn-dashboard">← Dashboard</a>
+                <a href="/" class="btn btn-home">Home</a>
+            </div>
+        </div>
+
+        <div class="card">
+            <div class="card-top">
+                <div class="contact-avatar">
+                    <svg viewBox="0 0 24 24">
+                        <path d="M12 12c2.761 0 5-2.239 5-5S14.761 2 12 2 7 4.239 7 7s2.239 5 5 5zm0 2c-4.418 0-8 2.239-8 5v1h16v-1c0-2.761-3.582-5-8-5z"/>
+                    </svg>
+                </div>
+                <h2>Contact Image</h2>
+                <div class="sub">Simple contact profile design</div>
+            </div>
+
+            <div class="info">
+                <div class="info-grid">
+                    <div class="info-box full">
+                        <div class="label">Phone Number</div>
+                        <div class="value">8799686706</div>
+                    </div>
+
+                    <div class="info-box full">
+                        <div class="label">Email ID</div>
+                        <div class="value">yuvrajdodiyaj010@gmail.com</div>
+                    </div>
+
+                    <div class="info-box">
+                        <div class="label">Role</div>
+                        <div class="value">Python Backend Developer</div>
+                    </div>
+
+                    <div class="info-box">
+                        <div class="label">Instagram ID</div>
+                        <div class="value">@yuvraj_sinh_banna_010</div>
+                    </div>
+                </div>
+
+                <div class="footer-note">
+                    Thank you for visiting my contact page.
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

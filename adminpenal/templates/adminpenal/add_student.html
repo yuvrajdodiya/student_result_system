@@ -1,0 +1,367 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Add Student</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+<style>
+
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family:'Poppins',sans-serif;
+}
+
+body{
+    background:#dfe3eb;
+    min-height:100vh;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    padding:40px 15px;
+}
+
+.container{
+    width:100%;
+    max-width:950px;
+    background:#fff;
+    border-radius:25px;
+    overflow:hidden;
+    box-shadow:0 15px 40px rgba(0,0,0,0.12);
+}
+
+.top-section{
+    background:linear-gradient(135deg,#4b6cff,#2d56e8);
+    padding:40px 30px;
+    text-align:center;
+    color:#fff;
+}
+
+.logo{
+    width:90px;
+    height:90px;
+    background:#fff;
+    border-radius:50%;
+    margin:auto;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    overflow:hidden;
+    margin-bottom:18px;
+}
+
+.logo img{
+    width:70px;
+}
+
+.top-section h1{
+    font-size:34px;
+    margin-bottom:8px;
+}
+
+.top-section p{
+    font-size:15px;
+    opacity:0.9;
+}
+
+.form-section{
+    padding:35px;
+}
+
+.section-title{
+    font-size:22px;
+    color:#333;
+    margin-bottom:25px;
+    font-weight:600;
+}
+
+.form-grid{
+    display:grid;
+    grid-template-columns:repeat(auto-fit,minmax(250px,1fr));
+    gap:20px;
+}
+
+.input-group{
+    display:flex;
+    flex-direction:column;
+}
+
+.input-group label{
+    font-size:14px;
+    margin-bottom:8px;
+    color:#333;
+    font-weight:500;
+}
+
+.input-group input{
+    height:52px;
+    border:none;
+    outline:none;
+    background:#edf2ff;
+    border-radius:14px;
+    padding:0 15px;
+    font-size:15px;
+    transition:0.3s;
+}
+
+.input-group input:focus{
+    background:#fff;
+    border:2px solid #4b6cff;
+}
+
+.full-width{
+    grid-column:1/-1;
+}
+
+.photo-upload{
+    background:#edf2ff;
+    border:2px dashed #4b6cff;
+    padding:25px;
+    border-radius:16px;
+    text-align:center;
+}
+
+.photo-upload input{
+    background:none;
+    padding:0;
+}
+
+.mark-section{
+    margin-top:40px;
+}
+
+.mark-grid{
+    display:grid;
+    grid-template-columns:repeat(auto-fit,minmax(180px,1fr));
+    gap:20px;
+}
+
+.subject-box{
+    background:#f7f9ff;
+    border-radius:18px;
+    padding:20px;
+    transition:0.3s;
+}
+
+.subject-box:hover{
+    transform:translateY(-5px);
+    box-shadow:0 10px 20px rgba(0,0,0,0.08);
+}
+
+.subject-box h3{
+    color:#2d56e8;
+    margin-bottom:12px;
+    font-size:18px;
+}
+
+.subject-box input{
+    width:100%;
+    height:48px;
+    border:none;
+    outline:none;
+    background:#edf2ff;
+    border-radius:12px;
+    padding:0 12px;
+    font-size:15px;
+}
+
+.btn-area{
+    margin-top:35px;
+    text-align:center;
+}
+
+.submit-btn{
+    border:none;
+    background:linear-gradient(135deg,#4b6cff,#2d56e8);
+    color:#fff;
+    padding:15px 45px;
+    border-radius:40px;
+    font-size:17px;
+    font-weight:600;
+    cursor:pointer;
+    transition:0.3s;
+    box-shadow:0 10px 20px rgba(75,108,255,0.3);
+}
+
+.submit-btn:hover{
+    transform:translateY(-3px);
+}
+
+.footer-text{
+    margin-top:25px;
+    text-align:center;
+    color:#777;
+    font-size:14px;
+}
+
+@media(max-width:768px){
+
+    .top-section h1{
+        font-size:28px;
+    }
+
+    .form-section{
+        padding:25px;
+    }
+
+}
+.back-btn{
+    display:inline-block;
+    margin-bottom:20px;
+    padding:12px 25px;
+    background:white;
+    color:#2949e6;
+    text-decoration:none;
+    border-radius:30px;
+    font-size:14px;
+    font-weight:600;
+    transition:0.3s;
+}
+
+.back-btn:hover{
+    transform:translateY(-3px);
+    background:#eef2ff;
+}
+
+</style>
+</head>
+<body>
+
+<div class="container">
+
+    <div class="top-section">
+
+    <a href="/adminpenal/admin_dashbord/" class="back-btn">
+        ← Back Home
+    </a>
+
+    <div class="logo">
+        <img src="https://cdn-icons-png.flaticon.com/512/3135/3135755.png" alt="logo">
+    </div>
+
+    <h1>Add Student</h1>
+
+    <p>Student Result Management System</p>
+
+</div>
+
+    <div class="form-section">
+
+        <h2 class="section-title">Student Information</h2>
+
+        <form method="POST" enctype="multipart/form-data">
+
+            {% csrf_token %}
+
+            <div class="form-grid">
+
+                <div class="input-group">
+                    <label>Student Name</label>
+                    <input type="text" name="student_name" placeholder="Student Name" value="{{ data.student_name }}">
+                </div>
+
+                <div class="input-group">
+                    <label>Student Phone Number</label>
+                    <input type="number" name="student_phone" placeholder="Phone Number" value="{{ data.student_phone}}">
+                </div>
+
+                <div class="input-group full-width">
+                    <label>Student Email ID</label>
+                    <input type="email" name="student_email" placeholder="Email" value = "{{ data.student_email}}">
+                </div>
+
+                <div class="input-group">
+
+                    <label>Student Aadhaar Card Photo</label>
+                    
+                    <img src="{{ data.student_aadhar.url }}"
+                    width="120"
+                    style="margin-bottom:10px;border-radius:10px;">
+
+                    <div class="photo-upload">
+                        <input type="file" name="student_aadhar">
+
+                    </div>
+                </div>
+
+                <div class="input-group">
+                    <label>Student Photo</label>
+
+                    <img src="{{ data.student_photo.url }}"
+                    width="120"
+                    height="120"
+                    style="border-radius:50%;margin-bottom:10px;object-fit:cover;">
+
+                    <div class="photo-upload">
+                        <input type="file" name="student_photo">
+                    </div>
+                </div>
+
+            </div>
+
+            <div class="mark-section">
+
+                <h2 class="section-title">Student Marks (Out of 100)</h2>
+
+                <div class="mark-grid">
+
+                    <div class="subject-box">
+                        <h3>C</h3>
+                        <input type="number" name="c" value={{data.c}}>
+                    </div>
+
+                    <div class="subject-box">
+                        <h3>C++</h3>
+                        <input type="number" name="cpp" value ={{data.cpp}}>
+                    </div>
+
+                    <div class="subject-box">
+                        <h3>Java</h3>
+                        <input type="number" name="java" value={{data.java}}>
+                    </div>
+
+                    <div class="subject-box">
+                        <h3>Python</h3>
+                        <input type="number" name="python"value={{data.python}}>
+                    </div>
+
+                    <div class="subject-box">
+                        <h3>HTML</h3>
+                        <input type="number" name="html" value={{data.html}}>
+                    </div>
+
+                    <div class="subject-box">
+                        <h3>CSS</h3>
+                        <input type="number" name="css" value={{data.css}}>
+                    </div>
+
+                    <div class="subject-box">
+                        <h3>SQL</h3>
+                        <input type="number" name="sql"  value ={{data.sql}}>
+                    </div>
+
+                </div>
+
+            </div>
+
+            <div class="btn-area">
+                <button class="submit-btn" type="submit">Add Student</button>
+            </div>
+
+            <div class="footer-text">
+                School Result System
+            </div>
+
+        </form>
+
+    </div>
+
+</div>
+
+</body>
+</html>

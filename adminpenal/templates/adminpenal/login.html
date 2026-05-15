@@ -1,0 +1,193 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Teacher Login</title>
+
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- Google Font -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+    <style>
+        * {
+            font-family: 'Poppins', sans-serif;
+        }
+
+        body {
+            min-height: 100vh;
+            background: linear-gradient(135deg, #e8f0ff 0%, #f8fbff 50%, #ffffff 100%);
+        }
+
+        .login-wrapper {
+            min-height: 100vh;
+        }
+
+        .login-card {
+            width: 100%;
+            max-width: 430px;
+            border: 0;
+            border-radius: 24px;
+            box-shadow: 0 18px 50px rgba(0, 0, 0, 0.12);
+            overflow: hidden;
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+        }
+
+        .login-header {
+            background: linear-gradient(135deg, #4a7cff, #315fe0);
+            color: white;
+            padding: 28px 24px;
+            text-align: center;
+        }
+
+        .logo {
+            width: 92px;
+            height: 92px;
+            object-fit: contain;
+            background: white;
+            border-radius: 50%;
+            padding: 8px;
+            box-shadow: 0 8px 20px rgba(0,0,0,0.12);
+            margin-bottom: 14px;
+        }
+
+        .login-header h2 {
+            margin: 0;
+            font-weight: 700;
+            font-size: 28px;
+        }
+
+        .login-header p {
+            margin: 6px 0 0;
+            opacity: 0.9;
+            font-size: 14px;
+        }
+
+        .login-body {
+            padding: 30px 28px 28px;
+        }
+
+        .form-label {
+            font-weight: 600;
+            color: #2b2b2b;
+            margin-bottom: 8px;
+        }
+
+        .form-control {
+            border-radius: 14px;
+            padding: 12px 14px;
+            border: 1px solid #d8e1f2;
+            box-shadow: none !important;
+        }
+
+        .form-control:focus {
+            border-color: #4a7cff;
+            box-shadow: 0 0 0 0.2rem rgba(74, 124, 255, 0.12) !important;
+        }
+
+        .btn-login {
+            background: linear-gradient(135deg, #4a7cff, #315fe0);
+            border: none;
+            border-radius: 14px;
+            padding: 12px;
+            font-weight: 600;
+            font-size: 16px;
+            width: 100%;
+            box-shadow: 0 10px 20px rgba(74, 124, 255, 0.25);
+        }
+
+        .btn-login:hover {
+            background: linear-gradient(135deg, #3d70f0, #274ec0);
+        }
+
+        .forgot-link {
+            text-decoration: none;
+            font-weight: 500;
+            color: #315fe0;
+        }
+
+        .forgot-link:hover {
+            text-decoration: underline;
+        }
+
+        .msg {
+            border-radius: 12px;
+            padding: 10px 14px;
+            background: #fff3f3;
+            color: #c62828;
+            border: 1px solid #ffd1d1;
+            margin-bottom: 16px;
+        }
+
+        .footer-text {
+            font-size: 13px;
+            color: #6c757d;
+        }
+    </style>
+</head>
+<body>
+
+<div class="container login-wrapper d-flex justify-content-center align-items-center px-3">
+    <div class="card login-card">
+        
+        <div class="login-header">
+            <img src="{% static 'assist/shool_logo.png' %}" alt="School Logo" class="logo">
+            <h2>Teacher Login</h2>
+            <p>Enter your credentials to continue</p>
+        </div>
+
+        <div class="login-body">
+            {% if messages %}
+                {% for message in messages %}
+                    <div class="msg">{{ message }}</div>
+                {% endfor %}
+            {% endif %}
+
+            {% if error %}
+                <div class="msg">{{ error }}</div>
+            {% endif %}
+
+            <form method="post">
+                {% csrf_token %}
+
+                <div class="mb-3">
+                    <label for="teacher_id" class="form-label">Teacher ID</label>
+                    <input type="text" class="form-control" id="teacher_id" name="teacher_id"
+                           placeholder="Enter Teacher ID" required>
+                </div>
+
+                <div class="mb-2">
+                    <label for="password" class="form-label">Password</label>
+                    <input type="password" class="form-control" id="password" name="password"
+                           placeholder="Enter Password" required>
+                </div>
+
+                <div class="d-flex justify-content-between align-items-center mb-3">
+                    <div class="form-check">
+                        <input class="form-check-input" type="checkbox" id="rememberMe">
+                        <label class="form-check-label small" for="rememberMe">Remember me</label>
+                    </div>
+
+                    <a href="{% url 'forgot_password' %}" class="forgot-link small">Forgot Password?</a>
+                </div>
+
+                <button type="submit" class="btn btn-primary btn-login">Login</button>
+            </form>
+
+            <div class="text-center mt-4">
+                <p class="footer-text mb-0">School Result System</p>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Bootstrap JS -->
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>

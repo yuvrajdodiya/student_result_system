@@ -1,0 +1,284 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Students Page</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+<style>
+
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family:'Poppins',sans-serif;
+}
+
+body{
+    background:#dfe3eb;
+    padding:30px 20px;
+}
+
+.container{
+    max-width:1200px;
+    margin:auto;
+}
+
+.top-box{
+    background:linear-gradient(135deg,#4d6bff,#2949e6);
+    border-radius:25px;
+    padding:35px;
+    text-align:center;
+    color:white;
+    margin-bottom:25px;
+    box-shadow:0 10px 30px rgba(0,0,0,0.08);
+}
+
+.top-box img{
+    width:90px;
+    height:90px;
+    background:white;
+    padding:10px;
+    border-radius:50%;
+    margin-bottom:15px;
+}
+
+.top-box h1{
+    font-size:42px;
+    margin-bottom:10px;
+}
+
+.top-box p{
+    font-size:14px;
+    opacity:0.9;
+}
+
+.back-btn{
+    display:inline-block;
+    background:white;
+    color:#2949e6;
+    text-decoration:none;
+    padding:10px 22px;
+    border-radius:30px;
+    font-size:14px;
+    font-weight:600;
+    margin-bottom:20px;
+    transition:0.3s;
+}
+
+.back-btn:hover{
+    transform:translateY(-3px);
+}
+
+.search-box{
+    background:#f1f1f1;
+    padding:15px;
+    border-radius:20px;
+    margin-bottom:30px;
+}
+
+.search-box input{
+    width:100%;
+    border:none;
+    outline:none;
+    padding:16px;
+    border-radius:12px;
+    background:#e7ebf7;
+    font-size:15px;
+}
+
+.student-grid{
+    display:grid;
+    grid-template-columns:repeat(auto-fit,minmax(240px,1fr));
+    gap:25px;
+}
+
+.student-card{
+    background:white;
+    border-radius:25px;
+    padding:30px 20px;
+    text-align:center;
+    transition:0.3s;
+    box-shadow:0 8px 20px rgba(0,0,0,0.05);
+}
+
+.student-card:hover{
+    transform:translateY(-6px);
+}
+
+.student-photo{
+    width:90px;
+    height:90px;
+    border-radius:50%;
+    object-fit:cover;
+    border:4px solid #4d6bff;
+    margin-bottom:15px;
+}
+
+.student-name{
+    font-size:28px;
+    font-weight:700;
+    margin-bottom:8px;
+    color:#111827;
+}
+
+.student-email{
+    font-size:14px;
+    color:#6b7280;
+    margin-bottom:20px;
+    word-break:break-word;
+}
+
+.btn-group{
+    display:flex;
+    flex-direction:column;
+    gap:12px;
+}
+
+.view-btn,
+.update-btn,
+.delete-btn{
+    text-decoration:none;
+    padding:12px;
+    border-radius:30px;
+    font-size:14px;
+    font-weight:600;
+    transition:0.3s;
+}
+
+.view-btn{
+    background:#4d6bff;
+    color:white;
+}
+
+.view-btn:hover{
+    background:#2949e6;
+}
+
+.update-btn{
+    background:#22c55e;
+    color:white;
+}
+
+.update-btn:hover{
+    background:#16a34a;
+}
+
+.delete-btn{
+    background:#ef4444;
+    color:white;
+}
+
+.delete-btn:hover{
+    background:#dc2626;
+}
+
+@media(max-width:768px){
+
+    .top-box h1{
+        font-size:30px;
+    }
+
+    .student-name{
+        font-size:22px;
+    }
+
+}
+
+</style>
+</head>
+
+<body>
+
+<div class="container">
+
+    <!-- TOP HEADER -->
+
+    <div class="top-box">
+
+        <a href="/adminpenal/admin_dashbord/" class="back-btn">
+            ← Back Home
+        </a>
+
+        <br>
+
+        <img src="https://cdn-icons-png.flaticon.com/512/3135/3135715.png">
+
+        <h1>All Students</h1>
+
+        <p>Student Result Management System</p>
+
+    </div>
+
+    <!-- SEARCH BAR -->
+
+    <div class="search-box">
+
+        <input type="text" placeholder="Search student...">
+
+    </div>
+
+    <!-- STUDENT LIST -->
+
+    <div class="student-grid">
+
+        {% for i in data %}
+
+        <div class="student-card">
+
+            <img src="{{ i.student_photo.url }}" class="student-photo">
+
+            <div class="student-name">
+                {{ i.student_name }}
+            </div>
+
+            <div class="student-email">
+                {{ i.student_email }}
+            </div>
+
+            <!-- BUTTONS -->
+
+            <div class="btn-group">
+
+                <!-- RESULT BUTTON -->
+
+                <a href="{% url 'results' %}" class="view-btn">
+                    View Results
+                </a>
+
+                <!-- UPDATE BUTTON -->
+
+                <a href="{% url 'update_student' i.id %}" class="update-btn">
+                    Update
+                </a>
+
+                <!-- DELETE BUTTON -->
+
+                <a href="{% url 'delete_student' i.id %}"
+                   class="delete-btn"
+                   onclick="return confirm('Are you sure delete this student?')">
+
+                    Delete
+
+                </a>
+                 <!-- RESULT BUTTON -->
+
+                <a href="{% url 'admin_student_info' i.id %}" class="view-btn">
+                    Info
+                </a>
+
+            </div>
+
+        </div>
+
+        {% endfor %}
+
+    </div>
+
+</div>
+
+</body>
+</html>

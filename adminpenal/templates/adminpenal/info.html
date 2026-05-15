@@ -1,0 +1,307 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Student Information</title>
+
+<link href="https://googleapis.com" rel="stylesheet">
+
+<style>
+    *{
+        margin:0;
+        padding:0;
+        box-sizing:border-box;
+        font-family:'Poppins',sans-serif;
+    }
+
+    body{
+        background:#dfe3eb;
+        min-height:100vh;
+        display:flex;
+        justify-content:center;
+        align-items:center;
+        padding:40px 15px;
+    }
+
+    .container{
+        width:100%;
+        max-width:900px;
+        background:#fff;
+        border-radius:25px;
+        overflow:hidden;
+        box-shadow:0 15px 40px rgba(0,0,0,0.12);
+    }
+
+    .top-section{
+        background:linear-gradient(135deg,#4b6cff,#2d56e8);
+        padding:40px 30px;
+        text-align:center;
+        color:#fff;
+    }
+
+    .back-btn{
+        display:inline-block;
+        margin-bottom:20px;
+        padding:12px 25px;
+        background:white;
+        color:#2949e6;
+        text-decoration:none;
+        border-radius:30px;
+        font-size:14px;
+        font-weight:600;
+        transition:0.3s;
+    }
+
+    .back-btn:hover{
+        transform:translateY(-3px);
+        background:#eef2ff;
+    }
+
+    .logo{
+        width:90px;
+        height:90px;
+        background:#fff;
+        border-radius:50%;
+        margin:auto;
+        display:flex;
+        justify-content:center;
+        align-items:center;
+        overflow:hidden;
+        margin-bottom:18px;
+    }
+
+    .logo img{
+        width:70px;
+    }
+
+    .top-section h1{
+        font-size:34px;
+        margin-bottom:8px;
+    }
+
+    .top-section p{
+        font-size:15px;
+        opacity:0.9;
+    }
+
+    .info-section{
+        padding:35px;
+    }
+
+    .section-title{
+        font-size:24px;
+        color:#333;
+        margin-bottom:30px;
+        font-weight:600;
+    }
+
+    .student-card{
+        background:#f7f9ff;
+        border-radius:22px;
+        padding:30px;
+        margin-bottom:25px;
+        box-shadow:0 10px 25px rgba(0,0,0,0.06);
+    }
+
+    /* Layout Wrapper */
+    .student-layout {
+        display: flex;
+        gap: 30px;
+        flex-wrap: wrap;
+        align-items: flex-start;
+    }
+
+    /* Left Sidebar Style */
+    .profile-sidebar {
+        flex: 0 0 200px;
+        background: #fff;
+        padding: 20px;
+        border-radius: 20px;
+        text-align: center;
+        box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+    }
+
+    .profile-sidebar img {
+        width: 120px;
+        height: 120px;
+        border-radius: 50%;
+        object-fit: cover;
+        border: 4px solid #4b6cff;
+        margin-bottom: 15px;
+    }
+
+    .profile-sidebar h2 {
+        font-size: 16px;
+        color: #2d56e8;
+        margin-bottom: 5px;
+    }
+
+    .profile-sidebar p {
+        font-size: 14px;
+        color: #777;
+    }
+
+    .change-pass-btn {
+        margin-top: 20px;
+        background: #6c63ff;
+        color: white;
+        border: none;
+        padding: 12px 15px;
+        border-radius: 10px;
+        cursor: pointer;
+        width: 100%;
+        font-weight: 500;
+        font-size: 13px;
+        transition: 0.3s;
+    }
+
+    .change-pass-btn:hover {
+        background: #5a52e0;
+    }
+
+    /* Right Grid Style */
+    .details-content {
+        flex: 1;
+        min-width: 300px;
+    }
+
+    .info-grid{
+        display:grid;
+        grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+        gap:15px;
+    }
+
+    .info-box{
+        background:#edf2ff;
+        padding:15px 20px;
+        border-radius:15px;
+    }
+
+    .info-box h3{
+        color:#2d56e8;
+        font-size:14px;
+        margin-bottom:5px;
+        text-transform: uppercase;
+        letter-spacing: 0.5px;
+    }
+
+    .info-box p{
+        color:#333;
+        font-size:15px;
+        font-weight:500;
+    }
+
+    .status-box{
+        margin-top:30px;
+        background:#edf8ef;
+        border:2px solid #31b44b;
+        border-radius:20px;
+        padding:25px;
+        text-align:center;
+    }
+
+    .status-box h2{
+        color:#1e8a35;
+        margin-bottom:12px;
+        font-size:28px;
+    }
+
+    .footer-text{
+        margin-top:30px;
+        text-align:center;
+        color:#777;
+        font-size:14px;
+    }
+
+    @media(max-width:768px){
+        .student-layout { flex-direction: column; align-items: center; }
+        .profile-sidebar { width: 100%; }
+    }
+</style>
+</head>
+<body>
+
+<div class="container"> 
+    <div class="top-section">
+        <a href="/adminpenal/admin_dashbord/" class="back-btn">← Back Home</a>
+        <div class="logo">
+            <img src="https://cdn-icons-png.flaticon.com/512/3135/3135755.png">
+        </div>
+        <h1>Student Information</h1>
+        <p>Student Result Management System</p>
+    </div>
+
+    <div class="info-section">
+        <h2 class="section-title">Personal Details</h2>
+
+        {% for i in data %}
+
+        <div class="student-card">
+            <div class="student-layout">
+                
+                <!-- Profile Left Side -->
+                <div class="profile-sidebar">
+                    <img src="{{ i.student_photo.url }}" alt="Student Photo">
+                    <h2>{{ i.student_name }}</h2>
+                    <p>Semester I</p>
+                    <button class="change-pass-btn">Change Password</button>
+                </div>
+
+                <!-- Info Grid Right Side -->
+                <div class="details-content">
+                    <div class="info-grid">
+                        <div class="info-box">
+                            <h3>Full Name</h3>
+                            <p>{{ i.student_name }}</p>
+                        </div>
+                        <div class="info-box">
+                            <h3>Email ID</h3>
+                            <p>{{ i.student_email }}</p>
+                        </div>
+                        <div class="info-box">
+                            <h3>Mobile Number</h3>
+                            <p>{{ i.student_phone }}</p>
+                        </div>
+                        <div class="info-box">
+                            <h3>Result Status</h3>
+                            {% if i.c >= 33 and i.cpp >= 33 and i.java >= 33 and i.python >= 33 and i.html >= 33 and i.css >= 33 and i.sql >= 33 %}
+                                <p style="color:green;font-weight:700;">PASS</p>
+                            {% else %}
+                                <p style="color:red;font-weight:700;">FAIL</p>
+                            {% endif %}
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+
+            <!-- Pass/Fail Status Box -->
+            <div class="status-box">
+                {% if i.c >= 33 and i.cpp >= 33 and i.java >= 33 and i.python >= 33 and i.html >= 33 and i.css >= 33 and i.sql >= 33 %}
+                    <h2>PASS</h2>
+                    <p>Congratulations! Student passed all subjects.</p>
+                {% else %}
+                    <h2 style="color:red;">FAIL</h2>
+                    <p>Student failed in one or more subjects.</p>
+                {% endif %}
+            </div>
+
+            <div class="footer-text">
+                School Result System
+            </div>
+        </div>
+
+        {% empty %}
+
+        <div class="student-card">
+            <p>No students found.</p>
+        </div>
+
+        {% endfor %}
+    </div>
+</div>
+
+</body>
+</html>

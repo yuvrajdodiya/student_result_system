@@ -1,0 +1,2 @@
+http://127.0.0.1:8000/adminpenal/login/ == techer page 
+http://127.0.0.1:8000/result_system/login/ == student login page 

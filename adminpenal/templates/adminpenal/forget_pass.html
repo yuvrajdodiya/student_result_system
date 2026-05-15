@@ -1,0 +1,259 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+
+<title>Forgot Password</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+<style>
+
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family:'Poppins',sans-serif;
+}
+
+body{
+    height:100vh;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    background:#dfe3ea;
+}
+
+/* Main Card */
+
+.forgot-container{
+    width:380px;
+    background:#fff;
+    border-radius:22px;
+    overflow:hidden;
+    box-shadow:0 15px 40px rgba(0,0,0,0.12);
+    animation:fadeIn 0.8s ease;
+}
+
+/* Top Blue Section */
+
+.top-box{
+    background:linear-gradient(135deg,#4f7cff,#2f55d4);
+    padding:35px 30px 28px;
+    text-align:center;
+    position:relative;
+}
+
+.logo{
+    width:72px;
+    height:72px;
+    background:#fff;
+    border-radius:50%;
+    margin:auto;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    font-size:28px;
+    color:#2f55d4;
+    font-weight:bold;
+    box-shadow:0 5px 20px rgba(0,0,0,0.15);
+}
+
+.top-box h2{
+    color:#fff;
+    margin-top:16px;
+    font-size:30px;
+    font-weight:700;
+}
+
+.top-box p{
+    color:#e8ecff;
+    font-size:14px;
+    margin-top:6px;
+}
+
+/* Form Section */
+
+.form-box{
+    padding:30px;
+}
+
+.input-group{
+    margin-bottom:18px;
+}
+
+.input-group label{
+    display:block;
+    margin-bottom:7px;
+    font-size:14px;
+    font-weight:600;
+    color:#333;
+}
+
+.input-group input{
+    width:100%;
+    padding:14px;
+    border:none;
+    outline:none;
+    border-radius:12px;
+    background:#eef2fb;
+    font-size:14px;
+    transition:0.3s;
+}
+
+.input-group input:focus{
+    background:#fff;
+    border:2px solid #4f7cff;
+    box-shadow:0 0 10px rgba(79,124,255,0.2);
+}
+
+/* Button */
+
+.reset-btn{
+    width:100%;
+    padding:14px;
+    border:none;
+    border-radius:12px;
+    background:linear-gradient(135deg,#4f7cff,#2f55d4);
+    color:#fff;
+    font-size:16px;
+    font-weight:600;
+    cursor:pointer;
+    transition:0.3s;
+    margin-top:8px;
+    box-shadow:0 8px 20px rgba(47,85,212,0.25);
+}
+
+.reset-btn:hover{
+    transform:translateY(-2px);
+    box-shadow:0 12px 25px rgba(47,85,212,0.35);
+}
+
+/* Back Login */
+
+.back-login{
+    text-align:center;
+    margin-top:20px;
+}
+
+.back-login a{
+    text-decoration:none;
+    color:#2f55d4;
+    font-size:14px;
+    font-weight:600;
+    transition:0.3s;
+}
+
+.back-login a:hover{
+    color:#4f7cff;
+    text-decoration:underline;
+}
+
+/* Footer */
+
+.footer-text{
+    text-align:center;
+    margin-top:25px;
+    color:#888;
+    font-size:12px;
+}
+
+/* Animation */
+
+@keyframes fadeIn{
+    from{
+        opacity:0;
+        transform:translateY(20px);
+    }
+    to{
+        opacity:1;
+        transform:translateY(0);
+    }
+}
+
+/* Responsive */
+
+@media(max-width:450px){
+
+    .forgot-container{
+        width:92%;
+    }
+
+    .top-box h2{
+        font-size:24px;
+    }
+
+}
+
+</style>
+</head>
+
+<body>
+
+<div class="forgot-container">
+
+    <div class="top-box">
+
+        <div class="logo">
+            🎓
+        </div>
+
+        <h2>Forgot Password</h2>
+
+        <p>Reset your teacher account password</p>
+
+    </div>
+
+    <div class="form-box">
+
+        <form>
+
+            <div class="input-group">
+    <label>Email ID</label>
+
+    <div class="email-box">
+
+        <input type="email" placeholder="Enter your email id" required>
+
+        <button type="button" class="send-btn">
+            Send
+        </button>
+
+    </div>
+</div>
+            <div class="input-group">
+                <label>Verification Code</label>
+                <input type="text" placeholder="Enter verification code" required>
+            </div>
+
+            <div class="input-group">
+                <label>New Password</label>
+                <input type="password" placeholder="Enter new password" required>
+            </div>
+
+            <div class="input-group">
+                <label>Confirm Password</label>
+                <input type="password" placeholder="Confirm new password" required>
+            </div>
+
+            <button type="submit" class="reset-btn">
+                Reset Password
+            </button>
+
+        </form>
+
+        <div class="back-login">
+            <a href="login.html">← Back to Login</a>
+        </div>
+
+        <div class="footer-text">
+            School Result System
+        </div>
+
+    </div>
+
+</div>
+
+</body>
+</html>
